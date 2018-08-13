@@ -1,4 +1,3 @@
-#Import tools
 #import all necessary tools
 import matplotlib
 matplotlib.use('Agg')
@@ -19,7 +18,7 @@ from sklearn import metrics
 from itertools import cycle
 from sklearn.multiclass import OneVsRestClassifier
 from scipy import interp
-
+#Defined classifiers
 clsr_names=["Decision Tree", "Random Forest", "Logistic Regression"]
 
 classifiers = [DecisionTreeClassifier(max_depth=5),
@@ -46,26 +45,21 @@ for eachcol in cols:
         cat_cols.append(colnms[i])
     i+=1
 print(cat_cols)
-#Encoded all character variables
+#Encod all character variables
 df1=pd.get_dummies(df,columns=cat_cols)
 n=len(df1.index)
 m=len(df1.columns)
 print(df1.columns)
 print("n-index= "+str(n))
 print("m-columns= "+str(m))
-#df2=df1.sample(n=20000)
-#print(df2.head(3))
 #Check the shape of matrix which will apply to build the ML models
 print(df1.shape)
-
-#Select row and colunms from dataframe for modeling
-#x_all_cv=df2.iloc[:,0:(m-2)]
-#y_all_cv=df2.iloc[:,-1]
+#Select predictors and labeled data for modeling
 x_all=df1.iloc[:,0:(m-2)]
 y_all=df1.iloc[:,-1]
-
+#Creat a new file to include predictions and CV scores
 f=open('top_vars.xls','w')
-#Check the performance of each ML classifiers by using cross validation
+#Evaluate the performance of each ML classifiers by using cross validation
 clf = classifiers[0]
 f.write("Decision Tree:\n")
 print(cross_val_score(clf,x_all,y_all,scoring='accuracy',cv=10))
@@ -101,7 +95,6 @@ for key in sorted(var2imp1, key=lambda k:abs(var2imp1[k]),reverse=True):
     var2imp1_sorted=var2imp1_sorted.append(temp)
 print("Top 10 important variables-Decision Tree:")
 print(var2imp1_sorted[0:10])
-
 f.write("Top 10 Weighted Variables - Decision Tree:"+"\n")
 f.write("Rank\tVariable\tWeight\n")
 for g in range (0,10,1):
@@ -117,7 +110,6 @@ plt.yticks(y_pos, var1_names)
 plt.xlabel('Weight')
 plt.title('Decision Tree')
 plt.ylim(0,11)
-
 #Build the model and predict the parameters for Random Forest and calculate the weights of top10 features contributing to income greater than 50k on the screen
 clf = classifiers[1]
 model=clf.fit(x_trn_n,y_trn)
@@ -129,7 +121,6 @@ for key in sorted(var2imp2, key=lambda k:abs(var2imp2[k]),reverse=True):
     var2imp2_sorted=var2imp2_sorted.append(temp)
 print("Top 10 important variables-Random Forest:")
 print(var2imp2_sorted[0:10])
-
 f.write("Top 10 Weighted Variables - Random Forest:"+"\n")
 f.write("Rank\tVariable\tWeight\n")
 for j in range (0,10,1):
@@ -144,7 +135,6 @@ plt.yticks(y_pos, var2_names)
 plt.xlabel('Weight')
 plt.title('Random Forest')
 plt.ylim(0,11)
-
 #Build the model and predict the parameters for Logistic Regression and calculate the weights of top10 features contributing to income greater than 50k on the screen
 clf = classifiers[2]
 model=clf.fit(x_trn_n,y_trn)
