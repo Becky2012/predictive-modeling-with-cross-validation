@@ -12,7 +12,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.cross_validation import cross_val_score
-from sklearn.metrics import accuracy_score,roc_curve,auc
+from sklearn.metrics import accuracy_score
 
 #Defined classifiers
 clsr_names=["Decision Tree", "Random Forest", "Logistic Regression"]
