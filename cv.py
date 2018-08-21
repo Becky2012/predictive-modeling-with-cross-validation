@@ -8,15 +8,11 @@ import random
 from sklearn.model_selection import train_test_split,cross_val_predict
 from sklearn.preprocessing import MinMaxScaler,label_binarize
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.cross_validation import KFold,cross_val_score
+from sklearn.cross_validation import cross_val_score
 from sklearn.metrics import accuracy_score,roc_curve,auc
-from sklearn import metrics
-from itertools import cycle
-from sklearn.multiclass import OneVsRestClassifier
 
 #Defined classifiers
 clsr_names=["Decision Tree", "Random Forest", "Logistic Regression"]
