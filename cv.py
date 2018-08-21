@@ -17,7 +17,7 @@ from sklearn.metrics import accuracy_score,roc_curve,auc
 from sklearn import metrics
 from itertools import cycle
 from sklearn.multiclass import OneVsRestClassifier
-from scipy import interp
+
 #Defined classifiers
 clsr_names=["Decision Tree", "Random Forest", "Logistic Regression"]
 
