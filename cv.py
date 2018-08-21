@@ -45,7 +45,7 @@ for eachcol in cols:
         cat_cols.append(colnms[i])
     i+=1
 print(cat_cols)
-#Encod all character variables
+#Encode all character variables
 df1=pd.get_dummies(df,columns=cat_cols)
 n=len(df1.index)
 m=len(df1.columns)
